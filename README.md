@@ -24,3 +24,8 @@ anthropic_evaluator = create_llm_as_judge(
 )
 ```
 
+openevals를 설치합니다.
+
+```text
+pip install openevals
+```
