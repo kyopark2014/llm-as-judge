@@ -251,7 +251,7 @@ logger.info(f"eval_result: {eval_result}")
 json_match_evaluation.py:35 | eval_result: [{'key': 'json_match:average', 'score': 0, 'comment': None}]
 ```
 
-## LLM As a Judge
+## To-Do: LLM As a Judge
 
 [llm-as-judge.py](./application/llm-as-judge.py)에서는 [LangGraph-Reflection](https://github.com/langchain-ai/langgraph-reflection/tree/main)을 이용하여 reflection 패턴을 multi agent로 구현합니다.  
 
@@ -261,4 +261,16 @@ json_match_evaluation.py:35 | eval_result: [{'key': 'json_match:average', 'score
 pip install langgraph-reflection
 ```
 
+[LLM-as-a-Judge](https://github.com/langchain-ai/langgraph-reflection/blob/main/examples/llm_as_a_judge.py)를 참조하여 [llm-as-judge.py](./application/llm-as-judge.py)을 구현한 결과 아래와 같이 compile 에러가 발생하고 있어 debug 예정입니다.
 
+```text
+Traceback (most recent call last):
+  File "/Users/ksdyb/Documents/src/llm-as-judge/application/llm-as-judge.py", line 114, in <module>
+    reflection_app = create_graphs()
+  File "/Users/ksdyb/Documents/src/llm-as-judge/application/llm-as-judge.py", line 112, in create_graphs
+    return create_reflection_graph(assistant_graph, judge_graph).compile()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.13/site-packages/langgraph_reflection/__init__.py", line 30, in create_reflection_graph
+    _state_schema = state_schema or graph.builder.schema
+                                    ^^^^^^^^^^^^^
+```
