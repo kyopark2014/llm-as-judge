@@ -111,6 +111,70 @@ correctness.py:73 | comment: 주어진 출력과 참조 출력을 비교해 보�
 Thus, the score should be: false.
 ```
 
+## Hallucination
 
+아래와 같이 Hallucination을 확인하기 위한 evaluator를 이용할 수 있습니다.
 
+```python
+hallucination_evaluator = create_llm_as_judge(
+    prompt=HALLUCINATION_PROMPT_KOR,
+    feedback_key="hallucination_",
+    judge=chat.get_chat(),
+)
+
+inputs = "React는 무엇인가요?" # What is a doodad?
+outputs = "React는 사용자 인터페이스(UI)를 렌더링하기 위한 JavaScript 라이브러리입니다. UI는 버튼, 텍스트, 이미지와 같은 작은 요소로 구성됩니다. "
+context = """
+ReAct(Reasoning and Acting)는 대규모 언어 모델(LLM)의 추론 능력과 행동 능력을 결합한 AI 프레임워크입니다. 제가 찾은 정보를 바탕으로 설명해 드리겠습니다.
+
+ReAct의 주요 특징:
+
+추론과 행동의 통합: 기존에는 언어 모델의 추론 능력(예: chain-of-thought 프롬프팅)과 행동 능력(예: 행동 계획 생성)이 별개로 연구되었지만, ReAct는 이 두 가지를 함께 활용합니다.
+
+작동 방식:
+
+언어 모델에게 추론 과정을 언어로 표현하도록 유도하면서 동시에 행동을 취하게 합니다.
+모델이 생각하는 과정을 텍스트로 표현하고, 그에 따른 행동을 취한 후, 환경으로부터 피드백을 받아 다시 추론하는 과정을 반복합니다.
+장점:
+
+환상(hallucination)과 오류 전파 문제를 줄일 수 있습니다.
+인간이 이해하기 쉬운 문제 해결 과정을 생성합니다.
+복잡한 추론이 필요한 작업에서 더 나은 성능을 보입니다.
+적용 분야:
+
+지식 집약적 추론 작업(예: HotpotQA, Fever)
+웹 탐색, 텍스트 게임, 로봇 제어 등 다양한 상호작용 환경
+ReAct는 LangChain과 같은 프레임워크에서도 구현되어 있어, 언어 모델과 다양한 도구를 결합하여 복잡한 작업을 수행하는 에이전트를 만드는 데 활용되고 있습니다.
+"""
+reference_outputs = ""
+
+eval_result = hallucination_evaluator(
+  context=context,
+  inputs=inputs,
+  outputs=outputs,
+  reference_outputs=reference_outputs
+)
+
+logger.info(f"score: {eval_result.get('score')}")
+logger.info(f"comment: {eval_result.get('comment')}")
+```
+
+이때의 결과는 아래와 같습니다.
+
+```python
+hallucination.py:95 | score: False
+hallucination.py:96 | comment: 주어진 출력을 평가하기 위해 입력 컨텍스트와 비교해 보겠습니다.
+
+출력에서는 "React는 사용자 인터페이스(UI)를 렌더링하기 위한 JavaScript 라이브러리입니다. UI는 버튼, 텍스트, 이미지와 같은 작은 요소로 구성됩니다."라고 설명하고 있습니다.
+
+그러나 입력 컨텍스트에서는 "ReAct(Reasoning and Acting)"에 대해 설명하고 있으며, 이는 대규모 언어 모델(LLM)의 추론 능력과 행동 능력을 결합한 AI 프레임워크라고 명시되어 있습니다. 
+
+출력은 완전히 다른 기술에 대해 설명하고 있습니다:
+1. 출력은 "React" JavaScript 라이브러리에 대해 설명하고 있습니다.
+2. 입력 컨텍스트는 "ReAct" AI 프레임워크에 대한 것입니다.
+
+이는 심각한 환각(hallucination)으로, 출력이 제공된 컨텍스트와 전혀 관련이 없는 정보를 제시하고 있습니다. 출력은 컨텍스트에서 제공된 어떤 정보도 정확하게 반영하지 않고 있으며, 완전히 다른 기술에 대해 설명하고 있습니다.
+
+따라서, 점수는 false여야 합니다.
+```
 
