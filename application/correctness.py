@@ -61,7 +61,7 @@ correctness_evaluator = create_llm_as_judge(
 
 inputs = "지난 1년 동안 doodads의 가격이 얼마나 변했나요?" # How much has the price of doodads changed in the past year?
 outputs = "Doodads 가격이 지난 1년 동안 10% 상승했습니다" # Doodads have increased in price by 10% in the past year
-reference_outputs = "지난 1년 동안 Doodads 가격이 50% 하락했습니다." #  The price of doodads has decreased by 50% in the past year.
+reference_outputs = "지난 1년 동안 Doodads 가격이 50% 하락했습니다." # The price of doodads has decreased by 50% in the past year.
 
 eval_result = correctness_evaluator(
   inputs=inputs,
