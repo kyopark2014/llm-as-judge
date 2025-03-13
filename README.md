@@ -124,7 +124,7 @@ hallucination_evaluator = create_llm_as_judge(
     judge=chat.get_chat(),
 )
 
-inputs = "React는 무엇인가요?" # What is a doodad?
+inputs = "React는 무엇인가요?" 
 outputs = "React는 사용자 인터페이스(UI)를 렌더링하기 위한 JavaScript 라이브러리입니다. UI는 버튼, 텍스트, 이미지와 같은 작은 요소로 구성됩니다. "
 context = """
 ReAct(Reasoning and Acting)는 대규모 언어 모델(LLM)의 추론 능력과 행동 능력을 결합한 AI 프레임워크입니다. 제가 찾은 정보를 바탕으로 설명해 드리겠습니다.
