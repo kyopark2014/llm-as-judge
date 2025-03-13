@@ -1,5 +1,7 @@
 # LLM으로 평가하기
 
+여기에서는 LangChain의 [openevals](https://github.com/langchain-ai/openevals)을 이용해 LLM으로 평가하는 방법에 대해 설명합니다.
+
 ## OpenEvals 
 
 [openevals](https://github.com/langchain-ai/openevals)는 LangChain의 오픈소스 프로젝트로서 LLM으로 평가하는 프로세스를 보여주고 있습니다.
