@@ -274,3 +274,5 @@ Traceback (most recent call last):
     _state_schema = state_schema or graph.builder.schema
                                     ^^^^^^^^^^^^^
 ```
+
+assistant_graph와 judge_graph을 각각 수행시는 정상으로 동작하였으나, create_reflection_graph으로 빌드시에 문제가 발생하였습니다. create_reflection_graph의 오류일 수 있어서 추후 재시험합니다. 
