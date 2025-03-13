@@ -255,4 +255,10 @@ json_match_evaluation.py:35 | eval_result: [{'key': 'json_match:average', 'score
 
 [llm-as-judge.py](./application/llm-as-judge.py)에서는 [LangGraph-Reflection](https://github.com/langchain-ai/langgraph-reflection/tree/main)을 이용하여 reflection 패턴을 multi agent로 구현합니다.  
 
+아래와 같이 langgraph-reflection을 설치합니다. 
+
+```text
+pip install langgraph-reflection
+```
+
 
