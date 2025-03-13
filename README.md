@@ -113,7 +113,7 @@ Thus, the score should be: false.
 
 ## Hallucination
 
-아래와 같이 Hallucination을 확인하기 위한 evaluator를 이용할 수 있습니다.
+[hallucination.py](./application/hallucination.py)와 같이 Hallucination을 확인하기 위한 evaluator를 이용할 수 있습니다.
 
 ```python
 hallucination_evaluator = create_llm_as_judge(
@@ -178,3 +178,33 @@ hallucination.py:96 | comment: 주어진 출력을 평가하기 위해 입력 �
 따라서, 점수는 false여야 합니다.
 ```
 
+## JSON evaluator
+
+[json_match_evaluation.py](./application/json_match_evaluation.py)와 같이 json을 평가할 수 있습니다.
+
+```python
+evaluator = create_json_match_evaluator(
+    # How to aggregate feedback keys in each element of the list: "average", "all", or None
+    # "average" returns the average score. "all" returns 1 only if all keys score 1; otherwise, it returns 0. None returns individual feedback chips for each key
+    aggregator="average",
+    # Remove if evaluating a single structured output. This aggregates the feedback keys across elements of the list. Can be "average" or "all". Defaults to "all". "all" returns 1 if each element of the list is 1; if any score is not 1, it returns 0. "average" returns the average of the scores from each element. 
+    list_aggregator="all",
+    rubric={
+        "a": "Does the answer mention all the fruits in the reference answer?"
+    },
+    judge=chat.get_chat(),
+    use_reasoning=False    
+)
+
+eval_result = evaluator(
+    outputs=outputs, 
+    reference_outputs=reference_outputs
+)
+logger.info(f"eval_result: {eval_result}")
+```
+
+이때의 결과는 아래와 같습니다.
+
+```text
+json_match_evaluation.py:35 | eval_result: [{'key': 'json_match:average', 'score': 0, 'comment': None}]
+```
