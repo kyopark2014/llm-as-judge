@@ -1,4 +1,4 @@
-# llm-as-judge
+# LLM으로 평가하기
 
 ## OpenEvals 
 
