@@ -23,7 +23,9 @@ openevals를 설치합니다.
 pip install openevals
 ```
 
-## Conciseness 
+## 구현 예제
+
+### Conciseness 
 
 [conciseness.py](./application/conciseness.py)와 같이 CONCISENESS_PROMPT을 이용합니다.
 
@@ -66,7 +68,7 @@ Thus, the score should be: false.
 ```
 
 
-## Correctness
+### Correctness
 
 [correctness.py](./application/correctness.py)와 같이 구현할 수 있습니다.
 
@@ -113,7 +115,7 @@ correctness.py:73 | comment: 주어진 출력과 참조 출력을 비교해 보�
 Thus, the score should be: false.
 ```
 
-## Hallucination
+### Hallucination
 
 [hallucination.py](./application/hallucination.py)와 같이 Hallucination을 확인하기 위한 evaluator를 이용할 수 있습니다.
 
@@ -180,7 +182,7 @@ hallucination.py:96 | comment: 주어진 출력을 평가하기 위해 입력 �
 따라서, 점수는 false여야 합니다.
 ```
 
-## Critique
+### Critique
 
 [critique.py](./application/critique.py)와 같이 비평을 수행할 수 있습니다.
 
@@ -218,7 +220,7 @@ critique.py:64 | comment: AI 응답에 대한 평가를 한국어로 진행하�
 모든 평가 기준에서 AI의 응답은 만족스러운 수준을 보여주고 있습니다. 정보가 정확하고, 질문에 완전히 답변하며, 명확하게 구조화되어 있고, 유용한 정보를 제공하며, 안전한 내용을 담고 있습니다. 따라서, 점수는 True가 되어야 합니다.
 ```
 
-## JSON evaluator
+### JSON evaluator
 
 [json_match_evaluation.py](./application/json_match_evaluation.py)와 같이 json을 평가할 수 있습니다.
 
@@ -248,3 +250,9 @@ logger.info(f"eval_result: {eval_result}")
 ```text
 json_match_evaluation.py:35 | eval_result: [{'key': 'json_match:average', 'score': 0, 'comment': None}]
 ```
+
+## LLM As a Judge
+
+[llm-as-judge.py](./application/llm-as-judge.py)에서는 [LangGraph-Reflection](https://github.com/langchain-ai/langgraph-reflection/tree/main)을 이용하여 reflection 패턴을 multi agent로 구현합니다.  
+
+
