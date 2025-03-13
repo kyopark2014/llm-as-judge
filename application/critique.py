@@ -3,7 +3,6 @@ import utils
 import chat
 
 from openevals.llm import create_llm_as_judge
-# from openevals.prompts import CONCISENESS_PROMPT
 
 logger = utils.CreateLogger("chat")
 
