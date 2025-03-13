@@ -13,18 +13,7 @@
 
 ![image](https://github.com/user-attachments/assets/e1ee6eab-7f61-41a5-b661-4f4f192f82cf)
 
-평가하는 LLM은 아래와 같이 정의합니다.
-
-```python
-from openevals.llm import create_llm_as_judge
-from openevals.prompts import CORRECTNESS_PROMPT
-from langchain_anthropic import ChatAnthropic
-
-anthropic_evaluator = create_llm_as_judge(
-    prompt=CORRECTNESS_PROMPT,
-    judge=ChatAnthropic(model="claude-3-5-sonnet-latest", temperature=0.5),
-)
-```
+### 사전 준비 
 
 openevals를 설치합니다.
 
