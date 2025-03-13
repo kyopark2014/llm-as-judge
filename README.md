@@ -2,7 +2,7 @@
 
 ## OpenEvals 
 
-[openevals](https://github.com/langchain-ai/openevals)는 LangChain의 오픈소스 프로젝트로서 LLM으로 평가하는 프로세스를 보여주고 있습니다. 기존의 테스트보다 훨씬 우수한 결과를 보여줍니다. 
+[openevals](https://github.com/langchain-ai/openevals)는 LangChain의 오픈소스 프로젝트로서 LLM으로 평가하는 프로세스를 보여주고 있습니다.
 
 [Evaluating LLMs with OpenEvals](https://www.youtube.com/watch?v=J-F30jRyhoA)에서는 평가하는것을 아래와 같이 데모로 보여줍니다.
 
