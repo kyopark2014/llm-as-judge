@@ -180,6 +180,44 @@ hallucination.py:96 | comment: 주어진 출력을 평가하기 위해 입력 �
 따라서, 점수는 false여야 합니다.
 ```
 
+## Critique
+
+[critique.py](./application/critique.py)와 같이 비평을 수행할 수 있습니다.
+
+```python
+critique_evaluator = create_llm_as_judge(
+    prompt=CRITIQUE_PROMPT_KOR,
+    feedback_key="critique",
+    judge=chat.get_chat(),
+)
+eval_result = critique_evaluator(
+  inputs=None,
+  outputs=outputs
+)
+
+logger.info(f"score: {eval_result.get('score')}")
+logger.info(f"comment: {eval_result.get('comment')}")
+```
+
+이때의 결과는 아래와 같습니다.
+
+```text
+critique.py:63 | score: True
+critique.py:64 | comment: AI 응답에 대한 평가를 한국어로 진행하겠습니다.
+
+1. 정확성: 응답은 ReAct(Reasoning and Acting) 프레임워크에 대한 정확한 정보를 제공하고 있습니다. ReAct가 추론(reasoning)과 행동(acting)을 결합한 프레임워크라는 점, 작동 방식, 장점 등이 정확하게 설명되어 있습니다.
+
+2. 완전성: 응답은 ReAct의 정의, 주요 특징, 작동 방식, 장점, 적용 분야 등을 포괄적으로 다루고 있어 사용자의 질문에 충분히 답변하고 있습니다.
+
+3. 명확성: 응답은 명확한 구조로 정리되어 있으며, 각 섹션이 잘 구분되어 있습니다. 전문적인 개념을 이해하기 쉽게 설명하고 있습니다.
+
+4. 유용성: 응답은 ReAct 프레임워크에 대한 실용적인 정보를 제공하며, 적용 분야와 장점을 설명함으로써 사용자가 이 기술을 어떻게 활용할 수 있는지 이해하는 데 도움이 됩니다.
+
+5. 안전성: 응답에는 유해하거나 부적절한 내용이 포함되어 있지 않습니다.
+
+모든 평가 기준에서 AI의 응답은 만족스러운 수준을 보여주고 있습니다. 정보가 정확하고, 질문에 완전히 답변하며, 명확하게 구조화되어 있고, 유용한 정보를 제공하며, 안전한 내용을 담고 있습니다. 따라서, 점수는 True가 되어야 합니다.
+```
+
 ## JSON evaluator
 
 [json_match_evaluation.py](./application/json_match_evaluation.py)와 같이 json을 평가할 수 있습니다.
